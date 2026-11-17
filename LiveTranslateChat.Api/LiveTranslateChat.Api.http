@@ -1,0 +1,55 @@
+@LiveTranslateChat.Api_HostAddress = http://localhost:5009
+
+GET {{LiveTranslateChat.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{LiveTranslateChat.Api_HostAddress}}/Users
+Accept: application/json
+
+###
+
+GET {{LiveTranslateChat.Api_HostAddress}}/ChatMessages
+Accept: application/json
+
+###
+
+GET {{LiveTranslateChat.Api_HostAddress}}/Conversations
+Accept: application/json
+
+###
+POST {{LiveTranslateChat.Api_HostAddress}}/Users
+Content-type: application/json
+
+{
+    "name": "Name",
+    "email": "Email",
+    "favouriteLanguage": "FavouriteLanguage"
+}
+
+###
+POST {{LiveTranslateChat.Api_HostAddress}}/Conversations
+Content-Type: application/json
+
+{
+    "firstUserId": 1,
+    "secondUserId": 2
+}
+
+###
+POST {{LiveTranslateChat.Api_HostAddress}}/ChatMessages
+Content-Type: application/json
+
+{
+    "message": "Je suis content que la traduction fonctionne.",
+    "userId": 1,
+    "conversationId": 1
+}
+###
+PUT http://localhost:5009/Users/1
+Content-Type: application/json
+
+{
+  "favouriteLanguage": "fr"
+}

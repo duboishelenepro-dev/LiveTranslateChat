@@ -1,0 +1,39 @@
+
+# Secrets et fichiers de configuration locaux
+.env
+.env.*
+!.env.example
+**/appsettings.Development.json
+**/secrets.json
+
+# .NET
+**/bin/
+**/obj/
+.vs/
+
+# React / Node.js
+**/node_modules/
+**/dist/
+**/.vite/
+
+# Python / LibreTranslate
+**/.venv/
+**/__pycache__/
+**/*.pyc
+
+# Modèles de traduction
+ArgosModels/
+**/ArgosModels/
+
+# IDE
+.idea/
+
+# Système
+.DS_Store
+Thumbs.db
+
+# Ancien frontend inutilisé
+/LiveTranslateChat.Web/
+
+#Config personnelle
+**/*.csproj.user
