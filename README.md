@@ -23,14 +23,16 @@ L'objectif du projet est de proposer une expérience de messagerie fluide, dans 
 - Traduction des messages dans la langue préférée du destinataire.
 - Conservation du message original.
 - Affichage du message traduit et de son contenu original.
-- Conservation des emojis pendant la traduction.
+- Préservation des emojis courants pendant le processus de traduction.
 - Réutilisation des traductions enregistrées afin d'éviter de retraduire inutilement l'historique.
 
 ### 👥 Gestion des utilisateurs
-- Gestion de plusieurs profils utilisateurs.
-- Adresse e-mail et nom d'utilisateur.
-- Définition d'une langue préférée.
+- Gestion de profils utilisateurs de démonstration.
+- Affichage du nom et des informations associées à chaque profil.
+- Définition d'une langue préférée pour chaque utilisateur.
 - Sélection d'un profil pour tester les échanges entre utilisateurs.
+
+> Le projet ne dispose pas encore d'un système d'inscription ou d'authentification.
 
 ### ✓ Suivi des messages
 - Gestion des statuts de distribution et de lecture.
@@ -166,17 +168,26 @@ Avant de lancer le projet, installer :
 ### 1. Cloner le projet
 
 ```bash
-git clone <URL_DU_DEPOT_GITHUB>
+git clone https://github.com/duboishelenepro-dev/LiveTranslateChat.git
 cd LiveTranslateChat
 ```
 
 ### 2. Configurer PostgreSQL
 
-Créer une base de données PostgreSQL pour l'application.
+Créer une base de données PostgreSQL destinée à l'application.
 
-Configurer ensuite la chaîne de connexion dans la configuration locale du backend.
+Configurer ensuite la chaîne de connexion dans le fichier local :
 
-Ne pas publier les identifiants de connexion ou autres informations sensibles sur GitHub. Utiliser de préférence les User Secrets de .NET ou des variables d'environnement.
+`LiveTranslateChat.Api/appsettings.Development.json`
+
+Exemple de configuration :
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=LiveTranslateChatDb;Username=postgres;Password=VOTRE_MOT_DE_PASSE"
+  }
+}
 
 ### 3. Configurer LibreTranslate
 
@@ -215,8 +226,9 @@ $env:ARGOS_PACKAGES_DIR="D:\ArgosModels"
 Laisser ce terminal ouvert pendant l'utilisation de l'application.
 
 > Le chemin `D:\ArgosModels` correspond à mon environnement local. Il doit être adapté si le projet est installé sur une autre machine.
+...
 
-### 4. Configurer et lancer le backend
+### 3. Configurer et lancer le backend
 
 Ouvrir un nouveau terminal :
 
@@ -249,7 +261,7 @@ Le hub SignalR est disponible sur :
 http://localhost:5009/chatHub
 ```
 
-### 5. Installer et lancer le frontend
+### 4. Installer et lancer le frontend
 
 Ouvrir un nouveau terminal :
 
@@ -279,15 +291,20 @@ http://localhost:5173
 
 ## 🚀 Démarrage de l'application
 
-Pour utiliser LiveTranslateChat en local, trois services doivent fonctionner simultanément :
+Pour utiliser LiveTranslateChat en local, les quatre services suivants doivent être démarrés :
 
-| Service | Adresse |
-|---|---|
-| Frontend React / Vite | http://localhost:5173 |
-| API ASP.NET Core | http://localhost:5009 |
-| LibreTranslate | http://127.0.0.1:5000 |
+| Ordre | Service | Adresse |
+|---|---|---|
+| 1 | PostgreSQL | localhost:5432 |
+| 2 | LibreTranslate | http://127.0.0.1:5000 |
+| 3 | API ASP.NET Core | http://localhost:5009 |
+| 4 | Frontend React / Vite | http://localhost:5173 |
 
-Les trois terminaux doivent rester ouverts pendant l'utilisation de l'application.
+Chaque service doit rester actif pendant l'utilisation de l'application.
+
+Une fois les services démarrés, ouvrir :
+
+http://localhost:5173
 
 ---
 
@@ -306,16 +323,15 @@ Quelques scénarios permettent de vérifier le bon fonctionnement de l'applicati
 
 ---
 
-## 📸 Captures d'écran
+## 📸 Captures d'écran et démonstration
 
-Les captures d'écran suivantes pourront être ajoutées pour illustrer le fonctionnement de l'application :
+### Interface principale
 
-- Interface principale et liste des conversations.
-- Conversation entre deux utilisateurs.
-- Exemple de traduction automatique.
-- Affichage du message original et de sa traduction.
-- Indicateur de saisie.
-- Accusés de lecture.
+![Interface principale](docs/realtime-chat.png)
+
+### Saisie en temps réel
+
+![Saisie en temps réel](demos/live-typing.gif)
 
 ---
 

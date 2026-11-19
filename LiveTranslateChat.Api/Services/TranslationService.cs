@@ -15,12 +15,9 @@ public class TranslationService
     }
 
     private static readonly Regex EmojiRegex = new(
-    @"\p{Extended_Pictographic}(?:\uFE0F|\uFE0E)?(?:\u200D\p{Extended_Pictographic}(?:\uFE0F|\uFE0E)?)*",
+    @"(?:[\uD83C-\uDBFF][\uDC00-\uDFFF]|[\u2600-\u27BF])(?:\uFE0F|\uFE0E)?",
     RegexOptions.Compiled
-    );
-
-
-
+);
 
     public async Task<string> TranslateAsync(string text, string targetLanguage)
     {
